@@ -34,10 +34,17 @@ app.use(cors({
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const PORT = process.env.PORT || 9000;
-dbConnect()
 app.use('/api', router);
-app.listen(PORT, () => {
-  console.log(`Server Running on port ${PORT}...`);
 
-})
+dbConnect()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server Running on port ${PORT}...`);
+    })
+  })
+  .catch((error) => {
+    console.error("Database connection failed.");
+    console.error(error.message);
+    process.exit(1);
+  });
 // http://localhost:9000/api/login
