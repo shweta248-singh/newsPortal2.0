@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
 import {useLocation} from 'react-router-dom'
+import { apiUrl } from '../../config/api';
 const Slider = () => {
    const navigate=useNavigate()
   const location=useLocation()
@@ -13,7 +14,7 @@ const Slider = () => {
   }, [])
 
   const fetchData = async () => {
-    const response = await axios.get('http://localhost:9000/api/top-ten-news');
+    const response = await axios.get(apiUrl('/top-ten-news'));
     if (response?.data?.code == 200) {
       setData(response?.data?.data)
     }

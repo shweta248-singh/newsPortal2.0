@@ -8,6 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import axios from "axios";
 import Swal from "sweetalert2";
+import { apiUrl } from '../../config/api';
 const USerSchema = yup
   .object()
   .shape({
@@ -42,7 +43,7 @@ const navigate=useNavigate()
       })
        return ;
      }
-    const response = await axios.post('http://localhost:9000/api/user-register', formData, {
+    const response = await axios.post(apiUrl('/user-register'), formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }

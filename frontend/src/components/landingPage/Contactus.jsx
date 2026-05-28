@@ -7,6 +7,7 @@ import { FaUser, FaEnvelope, FaPhone, FaComment, FaMapMarkerAlt } from 'react-ic
 import Navbar from './Navbar';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { apiUrl } from '../../config/api';
 // Form validation schema
 const schema = yup.object().shape({
   name: yup.string().required('Name is required').min(2),
@@ -36,7 +37,7 @@ const Contactus = () => {
   });
 
   const handleContact =async (data) => {
-   const response=await axios.post('http://localhost:9000/api/add-contact-us',data);
+   const response=await axios.post(apiUrl('/add-contact-us'),data);
    if(response?.data?.code==200){
      Swal.fire({
       title:"Contact US",

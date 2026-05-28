@@ -6,6 +6,7 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
 import Navbar from './Navbar'
+import { apiUrl } from '../../config/api'
 
 
 const schema=yup
@@ -21,7 +22,7 @@ const Login = () => {
     resolver:yupResolver(schema),
   });
   const handleLogin=async(data)=>{
-    const response=await axios.post('http://localhost:9000/api/login',data);
+    const response=await axios.post(apiUrl('/login'),data);
     if(response?.data?.code==200){
       Swal.fire({
         title:"Login",

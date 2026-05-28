@@ -7,6 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import axios from "axios";
 import Swal from "sweetalert2";
+import { apiUrl } from '../../config/api';
 const USerSchema = yup
   .object()
   .shape({
@@ -50,7 +51,7 @@ const EditProfile = () => {
       })
        return ;
      }
-    const response = await axios.put('http://localhost:9000/api/user-update', formData, {
+    const response = await axios.put(apiUrl('/user-update'), formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }

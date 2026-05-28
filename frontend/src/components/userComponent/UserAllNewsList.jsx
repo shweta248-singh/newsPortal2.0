@@ -1,8 +1,9 @@
 
 import React, { useEffect, useState } from 'react'
-import Navbar from '../landingpage/Navbar'
+import Navbar from '../landingPage/Navbar'
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { apiUrl } from '../../config/api';
 const UserAllNewsList = () => {
   const [newsList, setNewsList] = useState([])
   useEffect(() => {
@@ -10,7 +11,7 @@ const UserAllNewsList = () => {
   }, [])
 
   const fetchData = async () => {
-    const response = await axios.get(`http://localhost:9000/api/all-approved-news`)
+    const response = await axios.get(apiUrl('/all-approved-news'))
     if (response?.data?.code == 200) {
       setNewsList(response?.data?.data)
     }

@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IoIosSearch } from "react-icons/io";
+import { apiUrl } from '../../config/api';
 
 import {useLocation} from 'react-router-dom'
 const LatestNews = () => {
@@ -17,19 +18,19 @@ const LatestNews = () => {
   }, [])
   const navigate=useNavigate()
   const fetchCategory = async () => {
-    const response = await axios.get('http://localhost:9000/api/top-category');
+    const response = await axios.get(apiUrl('/top-category'));
     if (response?.data?.code == 200) {
       setCatrgoryList(response?.data?.data?.slice(0, 4));
     }
   }
   const fetchTopNews = async () => {
-    const response = await axios.get('http://localhost:9000/api/top-ten-news');
+    const response = await axios.get(apiUrl('/top-ten-news'));
     if (response?.data?.code == 200) {
       setNewsList(response?.data?.data?.slice(0, 3));
     }
   }
   const fetchCity = async () => {
-    const response = await axios.get('http://localhost:9000/api/top-city');
+    const response = await axios.get(apiUrl('/top-city'));
     if (response?.data?.code == 200) {
       setCityList(response?.data?.data?.slice(0, 4));
     }

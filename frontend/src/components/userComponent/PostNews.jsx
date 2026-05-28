@@ -2,10 +2,11 @@ import React, { use } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import Navbar from '../landingpage/Navbar';
+import Navbar from '../landingPage/Navbar';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import { apiUrl } from '../../config/api';
 const Newsschema = yup
   .object()
   .shape({
@@ -24,7 +25,7 @@ const PostNews = () => {
   const handleAddNews = async (data) => {
     const user = JSON.parse(localStorage.getItem('userInfo'));
     const finalObj = { ...data, userId: user?._id };
-    const response = await axios.post('http://localhost:9000/api/add-news', finalObj)
+    const response = await axios.post(apiUrl('/add-news'), finalObj)
     if (response?.data?.code == 200) {
       Swal.fire({
         title: "News add",
